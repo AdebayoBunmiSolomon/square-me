@@ -6,4 +6,5 @@ export enum colors {
   gray = "#F3F4F7",
   lightGreen = "#12B76A",
   white = "#FFFFFF",
+  danger = "#FF4C4C",
 }

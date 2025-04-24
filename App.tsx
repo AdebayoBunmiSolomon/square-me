@@ -1,12 +1,11 @@
+import { CustomText } from "@src/components/shared";
 import { useFontLoading } from "@src/hooks/services";
 import { colors } from "@src/resources/color/color";
-import { fontFamily } from "@src/resources/fonts/font-family";
 import { AppLoader } from "@src/screens/App-Loader";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   StatusBar as RNStatusBar,
   Platform,
@@ -37,12 +36,9 @@ export default function App() {
         <AppLoader />
       ) : (
         <View style={styles.container}>
-          <Text
-            style={{
-              fontFamily: fontFamily.variable,
-            }}>
-            Open up App.tsx to start working on your app!
-          </Text>
+          <CustomText blue size={20} type='light'>
+            Hello, From square me technologies
+          </CustomText>
         </View>
       )}
     </SafeAreaProvider>

@@ -1,4 +1,4 @@
-import { CustomText } from "@src/components/shared";
+import { CustomButton, CustomText } from "@src/components/shared";
 import { useFontLoading } from "@src/hooks/services";
 import { colors } from "@src/resources/color/color";
 import { AppLoader } from "@src/screens/App-Loader";
@@ -39,6 +39,14 @@ export default function App() {
           <CustomText blue size={20} type='light'>
             Hello, From square me technologies
           </CustomText>
+          <CustomButton
+            buttonType='Outline'
+            title='Hello'
+            textType='medium'
+            onPress={() => {}}
+            textBlue
+            textSize={16}
+          />
         </View>
       )}
     </SafeAreaProvider>

@@ -18,9 +18,8 @@ import { CustomText, textType } from "../text/CustomText";
 import { colors } from "@src/resources/color/color";
 import { MaterialIcons, FontAwesome, Feather } from "@expo/vector-icons";
 import { useCustomInput } from "../hooks";
-import { countries } from "@src/constants/countries";
 
-export type InputType = "dropdown" | "password" | "custom" | "country";
+export type InputType = "dropdown" | "password" | "custom";
 
 interface BaseProps {
   maxLength?: number;
@@ -36,6 +35,7 @@ interface BaseProps {
   style?: StyleProp<ViewStyle>;
   valueFontType?: textType;
   titleStyle?: StyleProp<TextStyle>;
+  inputStyle?: StyleProp<TextStyle>;
   onSubmitEditing?: () => void;
 }
 
@@ -57,18 +57,7 @@ interface CustomProps extends BaseProps {
   searchInput?: boolean;
 }
 
-interface CountryProps extends BaseProps {
-  type: "country";
-  onSelectCountry: (currency: string, flag: string) => void;
-  keyboardType?: KeyboardType;
-  disabled?: boolean;
-}
-
-type CustomInputProps =
-  | DropdownProps
-  | PasswordProps
-  | CustomProps
-  | CountryProps;
+type CustomInputProps = DropdownProps | PasswordProps | CustomProps;
 
 export const CustomInput: React.FC<CustomInputProps> = (props) => {
   const {
@@ -85,24 +74,21 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
     style,
     valueFontType,
     titleStyle,
+    inputStyle,
     onSubmitEditing,
   } = props;
 
   const [seePassword, setSeePassword] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState<{
-    name: string;
-    currency: string;
-    flag: string;
-  } | null>(null);
+  const { getValueFontType } = useCustomInput();
 
-  const { getInputColor, getValueFontType } = useCustomInput();
+  const { getInputColor } = useCustomInput();
   const { borderColor, iconColor } = getInputColor(error || "");
   const valueFont = getValueFontType(valueFontType || "regular");
 
   const renderError = () =>
     showErrorText && error ? (
-      <CustomText size={12} danger type='regular' style={styles.errorText}>
+      <CustomText size={12} type='regular' style={styles.errorText}>
         {error}
       </CustomText>
     ) : null;
@@ -130,11 +116,12 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
             value={value}
             editable={false}
             style={[
+              styles.baseInput,
               {
-                width: "87%",
-                height: "100%",
                 fontFamily: valueFont,
+                flex: 1,
               },
+              inputStyle,
             ]}
             placeholderTextColor={colors.gray}
             onChangeText={onChangeText}
@@ -179,7 +166,12 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
               <TouchableOpacity
                 onPress={() => setModalVisible(false)}
                 style={styles.closeButton}>
-                <CustomText size={14} type='bold' danger>
+                <CustomText
+                  size={14}
+                  type='bold'
+                  style={{
+                    color: colors.danger,
+                  }}>
                   Close
                 </CustomText>
               </TouchableOpacity>
@@ -208,11 +200,12 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
           value={value}
           onChangeText={onChangeText}
           style={[
+            styles.baseInput,
             {
-              width: "87%",
-              height: "100%",
               fontFamily: valueFont,
+              flex: 1,
             },
+            inputStyle,
           ]}
           secureTextEntry={seePassword}
           placeholderTextColor={colors.gray}
@@ -262,12 +255,14 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
             value={value}
             onChangeText={onChangeText}
             style={[
+              styles.baseInput,
               {
-                width: searchInput ? "90%" : "100%",
-                height: "100%",
-                textAlignVertical: multiLine ? "top" : "center",
                 fontFamily: valueFont,
+                flex: searchInput ? 1 : undefined,
+                textAlignVertical: multiLine ? "top" : "center",
+                width: searchInput ? undefined : "100%",
               },
+              inputStyle,
             ]}
             keyboardType={keyboardType}
             placeholderTextColor={colors.gray}
@@ -281,106 +276,6 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
     );
   };
 
-  const renderCountryInput = () => {
-    const { onSelectCountry, keyboardType, disabled } = props as CountryProps;
-    return (
-      <>
-        <View
-          style={[
-            styles.inputWrapper,
-            {
-              borderColor,
-              flexDirection: "row",
-              alignItems: "center",
-              height: DVH(7),
-            },
-            style,
-          ]}>
-          <TouchableOpacity
-            onPress={() => setModalVisible(true)}
-            style={styles.iconButton}>
-            {selectedCountry ? (
-              <CustomText size={16} style={styles.flag}>
-                {selectedCountry.flag}
-                {selectedCountry.currency}
-              </CustomText>
-            ) : (
-              <CustomText size={16} style={styles.flag}>
-                {countries[0].flag}
-                {countries[0].currency}
-              </CustomText>
-            )}
-            <MaterialIcons
-              name='keyboard-arrow-down'
-              size={moderateScale(27)}
-              color={iconColor}
-            />
-          </TouchableOpacity>
-          <TextInput
-            placeholder={placeholder}
-            value={value}
-            onChangeText={onChangeText}
-            style={[
-              {
-                width: "60%",
-                height: "100%",
-                marginLeft: selectedCountry ? moderateScale(10) : 0,
-                fontFamily: valueFont,
-              },
-            ]}
-            placeholderTextColor={colors.gray}
-            keyboardType={keyboardType}
-            editable={disabled ? false : true}
-          />
-        </View>
-        {renderError()}
-        <Modal
-          visible={modalVisible}
-          transparent
-          animationType='fade'
-          onRequestClose={() => setModalVisible(false)}>
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <CustomText size={16} type='semi-bold' style={styles.modalHeader}>
-                Select a Currency
-              </CustomText>
-              <FlatList
-                data={countries}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                  <TouchableOpacity
-                    style={styles.option}
-                    onPress={() => {
-                      setSelectedCountry(item);
-                      onSelectCountry(item.currency, item.flag);
-                      setModalVisible(false);
-                    }}>
-                    <CustomText size={16} style={styles.flag}>
-                      {item.flag}
-                    </CustomText>
-                    <CustomText
-                      size={14}
-                      type='regular'
-                      style={styles.countryText}>
-                      {item.name} ({item.currency})
-                    </CustomText>
-                  </TouchableOpacity>
-                )}
-              />
-              <TouchableOpacity
-                onPress={() => setModalVisible(false)}
-                style={styles.closeButton}>
-                <CustomText size={14} type='bold' danger>
-                  Close
-                </CustomText>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-      </>
-    );
-  };
-
   const renderInput = () => {
     switch (type) {
       case "dropdown":
@@ -389,8 +284,6 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
         return renderPasswordInput();
       case "custom":
         return renderCustomInput();
-      case "country":
-        return renderCountryInput();
       default:
         return null;
     }
@@ -398,17 +291,20 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
 
   return (
     <View style={styles.container}>
-      <CustomText
-        size={14}
-        type={titleType ? titleType : "medium"}
-        style={[
-          {
-            color: titleColor || styles?.title.color,
-          },
-          titleStyle,
-        ]}>
-        {title}
-      </CustomText>
+      {title && (
+        <CustomText
+          size={14}
+          type={titleType ? titleType : "medium"}
+          style={[
+            styles.title,
+            {
+              color: titleColor || styles.title.color,
+            },
+            titleStyle,
+          ]}>
+          {title}
+        </CustomText>
+      )}
       {renderInput()}
     </View>
   );
@@ -417,17 +313,23 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
 const styles = StyleSheet.create({
   container: {
     gap: moderateScale(5),
+    width: "100%",
   },
   title: {
     color: "#484848",
   },
   inputWrapper: {
-    borderWidth: DVW(0.2),
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#F3F4F7",
     borderRadius: moderateScale(10),
     width: "100%",
-    paddingHorizontal: moderateScale(5),
+    paddingHorizontal: moderateScale(12),
     overflow: "hidden",
+  },
+  baseInput: {
+    padding: 0,
+    margin: 0,
+    includeFontPadding: false,
+    height: "100%",
   },
   iconButton: {
     padding: moderateScale(10),
@@ -436,6 +338,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     marginBottom: moderateScale(5),
+    color: colors.danger,
   },
   modalContainer: {
     flex: 1,
@@ -461,14 +364,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  flag: {
-    marginRight: moderateScale(10),
-  },
-  countryText: {
-    marginLeft: moderateScale(10),
-  },
   closeButton: {
     marginTop: moderateScale(10),
     alignSelf: "center",
+    padding: moderateScale(5),
   },
 });

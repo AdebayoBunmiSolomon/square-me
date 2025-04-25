@@ -106,7 +106,7 @@ export const CustomButton: React.FC<ICustomButtonProps> = ({
             buttonStyles.container,
             {
               backgroundColor: btnBgColor,
-              borderRadius: moderateScale(10),
+              borderRadius: moderateScale(7),
             },
             btnStyle,
           ]}
@@ -132,9 +132,9 @@ export const CustomButton: React.FC<ICustomButtonProps> = ({
           style={[
             buttonStyles.container,
             {
-              borderRadius: moderateScale(10),
+              borderRadius: moderateScale(7),
               borderColor: btnBgColor,
-              borderWidth: moderateScale(2),
+              borderWidth: moderateScale(1.5),
             },
             btnStyle,
           ]}

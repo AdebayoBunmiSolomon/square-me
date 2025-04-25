@@ -1,32 +1,35 @@
 import React from "react";
 import { Screen } from "./Screen";
 import { DVH, screenHeight, screenWidth } from "@src/resources/responsiveness";
-import { Loader } from "@src/common";
+import { Loader, StatusBar } from "@src/common";
 import { colors } from "@src/resources/color/color";
 import { StyleSheet, View } from "react-native";
 import { Image } from "expo-image";
 
 export const AppLoader = () => {
   return (
-    <Screen
-      bgColor={colors.blue}
-      style={{
-        width: screenWidth,
-        height: screenHeight,
-        justifyContent: "center",
-        alignItems: "center",
-      }}>
-      <View style={loaderStyles.iconContainer}>
-        <Image
-          source={require("@src/assets/png/app-icon.png")}
-          contentFit='contain'
-          style={loaderStyles.icon}
-        />
-      </View>
-      <View style={loaderStyles.container}>
-        <Loader size='large' color={colors.white} />
-      </View>
-    </Screen>
+    <>
+      <StatusBar style='light' bgColor={colors.blue} />
+      <Screen
+        bgColor={colors.blue}
+        style={{
+          width: screenWidth,
+          height: screenHeight,
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <View style={loaderStyles.iconContainer}>
+          <Image
+            source={require("@src/assets/png/app-icon.png")}
+            contentFit='contain'
+            style={loaderStyles.icon}
+          />
+        </View>
+        <View style={loaderStyles.container}>
+          <Loader size='large' color={colors.white} />
+        </View>
+      </Screen>
+    </>
   );
 };
 

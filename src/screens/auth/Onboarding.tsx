@@ -86,7 +86,7 @@ export const Onboarding = ({
           title='Create an account'
           textType='light'
           textSize={15}
-          onPress={() => {}}
+          onPress={() => navigation.navigate(authScreenNames.SIGN_UP)}
           blue
           textWhite
           btnStyle={{
@@ -98,7 +98,7 @@ export const Onboarding = ({
           title='I already have an account'
           textType='regular'
           textSize={15}
-          onPress={() => {}}
+          onPress={() => navigation.navigate(authScreenNames.LOGIN)}
           textBlue
         />
       </View>

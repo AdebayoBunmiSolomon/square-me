@@ -1,0 +1,29 @@
+import * as yup from "yup";
+
+export const createAcctFrmValidation = yup.object().shape({
+  phone_number: yup.string().required("phone number is required"),
+  referral_code: yup.string().required("referral code is required"),
+});
+
+export const verifyPhoneNumberFrmValidation = yup.object().shape({
+  code: yup.string().required("code is required"),
+});
+
+export const securityPinFrmValidation = yup.object().shape({
+  security_pin: yup.string().required("security PIN is required"),
+});
+
+export const confirmSecurityPinFrmValidation = yup.object().shape({
+  security_pin: yup.string().required("security PIN is required"),
+});
+
+export const bvnFrmValidation = yup.object().shape({
+  bvn: yup.string().required("BVN is required"),
+});
+
+export const verifyEmailAddressFrmValidation = yup.object().shape({
+  email_address: yup
+    .string()
+    .email("invalid email address")
+    .required("email is required"),
+});

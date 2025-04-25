@@ -1,4 +1,9 @@
-import { CustomButton, CustomText } from "@src/components/shared";
+import {
+  CustomButton,
+  CustomInput,
+  CustomPhoneInput,
+  CustomText,
+} from "@src/components/shared";
 import { useFontLoading } from "@src/hooks/services";
 import { colors } from "@src/resources/color/color";
 import { AppLoader } from "@src/screens/App-Loader";
@@ -46,6 +51,31 @@ export default function App() {
             onPress={() => {}}
             textBlue
             textSize={16}
+          />
+          <CustomInput
+            titleType='semi-bold'
+            title='Amount to Send'
+            titleColor={colors.black}
+            placeholder='Enter amount'
+            type='country'
+            style={{}}
+            onSelectCountry={(country, currency) => {
+              console.log(
+                `Selected Country: ${country}, Currency: ${currency}`
+              );
+            }}
+            keyboardType='phone-pad'
+          />
+          <CustomPhoneInput
+            value={""}
+            titleColor={colors.black}
+            title='Enter your phone number'
+            titleType='regular'
+            onChangeText={(value) => {}}
+            placeholder='Enter your phone number'
+            style={{}}
+            showErrorText
+            error={"Error"}
           />
         </View>
       )}

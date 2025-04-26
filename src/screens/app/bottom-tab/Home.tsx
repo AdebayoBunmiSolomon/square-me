@@ -1,5 +1,7 @@
+import { StatusBar } from "@src/common";
 import { CustomText } from "@src/components/shared";
 import { bottomTabScreenNames } from "@src/navigation";
+import { colors } from "@src/resources/color/color";
 import { moderateScale } from "@src/resources/responsiveness";
 import { BottomTabBarScreenProps } from "@src/router/types";
 import { Screen } from "@src/screens/Screen";
@@ -10,6 +12,7 @@ export const Home =
   ({}: BottomTabBarScreenProps<bottomTabScreenNames.HOME>) => {
     return (
       <Screen style={styles.screen} safeArea>
+        <StatusBar style='dark' bgColor={colors.white} />
         <CustomText type='regular' size={14}>
           Home Screen
         </CustomText>

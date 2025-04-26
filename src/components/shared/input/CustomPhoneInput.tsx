@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: moderateScale(5),
+    marginRight: moderateScale(15),
   },
   flagText: {
     borderRadius: moderateScale(100),

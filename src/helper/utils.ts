@@ -67,3 +67,37 @@ export const getBtnText = (currStep: number) => {
     };
   }
 };
+
+export const fpGetBtnText = (currStep: number) => {
+  if (currStep === 1) {
+    return {
+      btnText: "Next",
+      frmTitle: "",
+      desc: "",
+    };
+  } else if (currStep === 2) {
+    return {
+      btnText: "Whatsapp",
+      frmTitle: "Verify your phone number",
+      desc: "Please input the five (5) digit code that was sent to your phone number below",
+    };
+  } else if (currStep === 3) {
+    return {
+      btnText: "Continue",
+      frmTitle: "Create new PIN",
+      desc: "Enter a new a six (6) digit pin that you would use for all transactions",
+    };
+  } else if (currStep === 4) {
+    return {
+      btnText: "Continue",
+      frmTitle: "Confirm your Security PIN",
+      desc: "Input your six (6) digit PIN again",
+    };
+  } else if (currStep === 5) {
+    return {
+      btnText: "Login",
+      frmTitle: "",
+      desc: "",
+    };
+  }
+};

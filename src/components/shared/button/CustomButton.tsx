@@ -167,7 +167,7 @@ export const CustomButton: React.FC<ICustomButtonProps> = ({
 const buttonStyles = StyleSheet.create({
   container: {
     width: "95%",
-    paddingVertical: moderateScale(15),
+    paddingVertical: moderateScale(20),
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",

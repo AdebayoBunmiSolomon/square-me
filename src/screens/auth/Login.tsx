@@ -34,7 +34,7 @@ export const Login = ({
     if (actionText === "Log Out?") {
       Alert.alert("Log Out", "Perform Log out operation");
     } else {
-      Alert.alert("Forgot PIN", "Perform Forgot PIN operation");
+      navigation.navigate(authScreenNames.FORGOT_PASSWORD);
     }
   };
   return (

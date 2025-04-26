@@ -38,7 +38,7 @@ export const Step1: React.FC<ICreateAcctProps> = ({ useFormProps }) => {
             titleType='regular'
             title='Referral Code (Optional)'
             titleColor={"#000000"}
-            placeholder='Enter amount'
+            placeholder='Enter referral code'
             type='custom'
             keyboardType='default'
             onChangeText={(value) => field.onChange(value)}

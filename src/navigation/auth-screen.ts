@@ -15,4 +15,8 @@ export const authScreen: authScreenTypes[] = [
     screenName: authScreenNames.SIGN_UP,
     component: Screen.SignUp,
   },
+  {
+    screenName: authScreenNames.FORGOT_PASSWORD,
+    component: Screen.ForgotPassword,
+  },
 ];

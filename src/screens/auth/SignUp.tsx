@@ -9,11 +9,16 @@ import { ActionHeader, ActionText, IconHeader } from "@src/common";
 import { CustomButton, CustomText } from "@src/components/shared";
 import {
   Step1,
+  Step10,
+  Step11,
   Step2,
   Step3,
   Step4,
   Step5,
   Step6,
+  Step7,
+  Step8,
+  Step9,
 } from "@src/components/auth/sign-up";
 import { useStepper } from "@src/hooks/services";
 import {
@@ -22,6 +27,7 @@ import {
   createAcctFrmTypes,
   securityPinFrmTypes,
   verifyPhoneNumberFrmTypes,
+  enterEmailAddressFrmTypes,
   verifyEmailAddressFrmTypes,
 } from "@src/form/schema/types";
 import { useForm } from "react-hook-form";
@@ -32,6 +38,7 @@ import {
   createAcctFrmValidation,
   securityPinFrmValidation,
   verifyPhoneNumberFrmValidation,
+  enterEmailAddressFrmValidation,
   verifyEmailAddressFrmValidation,
 } from "@src/form/validation/rules";
 import { getBtnText } from "@src/helper/utils";
@@ -108,12 +115,25 @@ export const SignUp = ({
 
   //form 6 validation control
   const {
-    control: verifyEmailFormControl,
-    formState: { errors: verifyEmailFormErrors },
-    trigger: verifyEmailFormTrigger,
-    setValue: verifyEmailFormSetValue,
-    getValues: verifyEmailFormGetValues,
-    clearErrors: verifyEmailFormClearError,
+    control: enterEmailFormControl,
+    formState: { errors: enterEmailFormErrors },
+    trigger: enterEmailFormTrigger,
+    setValue: enterEmailFormSetValue,
+    getValues: enterEmailFormGetValues,
+    clearErrors: enterEmailFormClearError,
+  } = useForm<enterEmailAddressFrmTypes>({
+    mode: "onChange",
+    resolver: yupResolver(enterEmailAddressFrmValidation),
+  });
+
+  //form 7 validation control
+  const {
+    control: verifyEmailAddressFormControl,
+    formState: { errors: verifyEmailAddressFormErrors },
+    trigger: verifyEmailAddressFormTrigger,
+    setValue: verifyEmailAddressFormSetValue,
+    getValues: verifyEmailAddressFormGetValues,
+    clearErrors: verifyEmailAddressFormClearError,
   } = useForm<verifyEmailAddressFrmTypes>({
     mode: "onChange",
     resolver: yupResolver(verifyEmailAddressFrmValidation),
@@ -140,6 +160,16 @@ export const SignUp = ({
     } else if (currStep === 7) {
       isValid = await bvnFormTrigger();
       if (isValid) nextStep();
+    } else if (currStep === 8) {
+      nextStep();
+    } else if (currStep === 9) {
+      isValid = await enterEmailFormTrigger();
+      if (isValid) nextStep();
+    } else if (currStep === 10) {
+      isValid = await verifyEmailAddressFormTrigger();
+      if (isValid) nextStep();
+    } else if (currStep === 11) {
+      //perform specific operations here
     }
   };
 
@@ -178,6 +208,32 @@ export const SignUp = ({
       }}
     />,
     <Step6 />,
+    <Step7
+      useFormProps={{
+        control: bvnFormControl,
+        errors: bvnFormErrors,
+        setValue: bvnFormSetValue,
+        clearErrors: bvnFormClearError,
+      }}
+    />,
+    <Step8 />,
+    <Step9
+      useFormProps={{
+        control: enterEmailFormControl,
+        errors: enterEmailFormErrors,
+        setValue: enterEmailFormSetValue,
+        clearErrors: enterEmailFormClearError,
+      }}
+    />,
+    <Step10
+      useFormProps={{
+        control: verifyEmailAddressFormControl,
+        errors: verifyEmailAddressFormErrors,
+        setValue: verifyEmailAddressFormSetValue,
+        clearErrors: verifyEmailAddressFormClearError,
+      }}
+    />,
+    <Step11 />,
   ];
 
   return (
@@ -215,6 +271,21 @@ export const SignUp = ({
                 width: "100%",
               }}
             />
+            {currStep === 8 && (
+              <CustomButton
+                title='No, thank you'
+                blue
+                textType='medium'
+                textBlue
+                onPress={() => onSubmit()}
+                buttonType='Outline'
+                btnStyle={{
+                  width: "100%",
+                  marginTop: moderateScale(-12),
+                  borderWidth: 0,
+                }}
+              />
+            )}
             {currStep > 1 ? null : (
               <>
                 <ActionText

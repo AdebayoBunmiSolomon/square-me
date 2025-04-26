@@ -25,6 +25,31 @@ export type bvnFrmTypes = {
 };
 
 //sign up step 6
-export type verifyEmailAddressFrmTypes = {
+export type enterEmailAddressFrmTypes = {
   email_address: string;
+};
+
+//sign up step 7
+export type verifyEmailAddressFrmTypes = {
+  code: string;
+};
+
+//forgot password step 1
+export type FpEnterPhoneNumberFrmTypes = {
+  phone_number: string;
+};
+
+//forgot password step 2
+export type FpVerifyPhoneNumberFrmTypes = {
+  code: string;
+};
+
+//forgot password step 3
+export type FpCreatePinFrmTypes = {
+  pin: string;
+};
+
+//forgot password step 4
+export type FpConfirmPinFrmTypes = {
+  pin: string;
 };

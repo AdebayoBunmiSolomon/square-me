@@ -21,9 +21,29 @@ export const bvnFrmValidation = yup.object().shape({
   bvn: yup.string().required("BVN is required"),
 });
 
-export const verifyEmailAddressFrmValidation = yup.object().shape({
+export const enterEmailAddressFrmValidation = yup.object().shape({
   email_address: yup
     .string()
     .email("invalid email address")
     .required("email is required"),
+});
+
+export const verifyEmailAddressFrmValidation = yup.object().shape({
+  code: yup.string().required("code is required"),
+});
+
+export const FpEnterPhoneNumberFrmValidation = yup.object().shape({
+  phone_number: yup.string().required("phone number is required"),
+});
+
+export const FpVerifyPhoneNumberFrmValidation = yup.object().shape({
+  code: yup.string().required("code is required"),
+});
+
+export const FpCreatePinFrmValidation = yup.object().shape({
+  pin: yup.string().required("PIN is required"),
+});
+
+export const FpConfirmPinFrmValidation = yup.object().shape({
+  pin: yup.string().required("PIN is required"),
 });

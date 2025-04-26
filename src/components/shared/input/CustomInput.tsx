@@ -123,7 +123,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
               },
               inputStyle,
             ]}
-            placeholderTextColor={colors.gray}
+            placeholderTextColor={colors.black}
             onChangeText={onChangeText}
           />
           <TouchableOpacity
@@ -208,7 +208,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
             inputStyle,
           ]}
           secureTextEntry={seePassword}
-          placeholderTextColor={colors.gray}
+          placeholderTextColor={colors.black}
         />
         <TouchableOpacity
           onPress={() => setSeePassword(!seePassword)}
@@ -265,7 +265,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
               inputStyle,
             ]}
             keyboardType={keyboardType}
-            placeholderTextColor={colors.gray}
+            placeholderTextColor={colors.black}
             maxLength={maxLength}
             editable={disabled ? false : true}
             multiline={multiLine}

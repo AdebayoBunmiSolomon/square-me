@@ -104,7 +104,7 @@ const actionHeaderStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    gap: moderateScale(10),
+    gap: moderateScale(30),
     paddingBottom: moderateScale(30),
   },
   arrowBtn: {

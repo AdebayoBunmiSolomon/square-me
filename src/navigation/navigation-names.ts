@@ -5,6 +5,14 @@ export enum authScreenNames {
   FORGOT_PASSWORD = "ForgotPassword",
 }
 
-export enum bottomTabScreenNames {}
+export enum bottomTabScreenNames {
+  HOME = "Home",
+  MORE = "More",
+  PAYMENTS = "Payments",
+  PROFILE = "Profile",
+}
 
-export enum appScreenNames {}
+export enum appScreenNames {
+  NOTIFICATION = "Notification",
+  BOTTOM_TAB = "BottomTab",
+}

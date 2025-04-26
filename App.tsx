@@ -29,7 +29,7 @@ export default function App() {
       {!isFontLoadingComplete ? (
         <AppLoader />
       ) : (
-        <Router isAuthenticated={false} />
+        <Router isAuthenticated={true} />
       )}
     </SafeAreaProvider>
   );

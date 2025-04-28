@@ -27,7 +27,7 @@ export type BottomTabBarScreenProps<
 
 //native and app screen navigation
 export interface RootStackParamList extends ParamListBase {
-  notifications: undefined;
+  Notifications: undefined;
 }
 
 export type RootStackScreenProps<ScreenName extends keyof RootStackParamList> =

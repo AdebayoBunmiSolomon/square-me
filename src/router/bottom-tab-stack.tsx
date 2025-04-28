@@ -1,23 +1,23 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BottomTabBarStackParamList } from "./types";
 import { bottomTabScreens } from "@src/navigation/bottom-tab-screen";
-import { fontFamily } from "@src/resources/fonts/font-family";
-import { DVH, moderateScale } from "@src/resources/responsiveness";
-import { Platform } from "react-native";
+import { DVH, DVW } from "@src/resources/responsiveness";
+import { ImageSourcePropType, Platform, StyleSheet, View } from "react-native";
 import { CustomText } from "@src/components/shared";
 import { bottomTabScreenNames } from "@src/navigation";
-import {
-  Banknote,
-  Home,
-  House,
-  MessageSquareMore,
-  UserRound,
-} from "lucide-react-native";
-import { colors } from "@src/resources/color/color";
+import { Image } from "expo-image";
 
 const Tab = createBottomTabNavigator<BottomTabBarStackParamList>();
 
 export const BottomTabStack = () => {
+  const renderBottomTabIcon = (src: ImageSourcePropType) => {
+    return (
+      <View style={styles.iconContainer}>
+        <Image source={src} contentFit='cover' style={styles.icon} />
+      </View>
+    );
+  };
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -37,23 +37,39 @@ export const BottomTabStack = () => {
             </CustomText>
           ),
         tabBarIcon: ({ focused }) =>
-          focused && route.name === bottomTabScreenNames.HOME ? (
-            <House color={"#8B9DC7"} size={moderateScale(25)} />
-          ) : !focused && route.name === bottomTabScreenNames.HOME ? (
-            <House color={"#4C525E"} size={moderateScale(25)} />
-          ) : focused && route.name === bottomTabScreenNames.PAYMENTS ? (
-            <Banknote color={"#8B9DC7"} size={moderateScale(25)} />
-          ) : !focused && route.name === bottomTabScreenNames.PAYMENTS ? (
-            <Banknote color={"#4A4A4A"} size={moderateScale(25)} />
-          ) : focused && route.name === bottomTabScreenNames.MORE ? (
-            <MessageSquareMore color={"#8B9DC7"} size={moderateScale(25)} />
-          ) : !focused && route.name === bottomTabScreenNames.MORE ? (
-            <MessageSquareMore color={"#4A4A4A"} size={moderateScale(25)} />
-          ) : focused && route.name === bottomTabScreenNames.PROFILE ? (
-            <UserRound color={"#8B9DC7"} size={moderateScale(25)} />
-          ) : !focused && route.name === bottomTabScreenNames.PROFILE ? (
-            <UserRound color={"#4A4A4A"} size={moderateScale(25)} />
-          ) : undefined,
+          focused && route.name === bottomTabScreenNames.HOME
+            ? renderBottomTabIcon(
+                require("@src/assets/png/bottom-tab/home-focused.png")
+              )
+            : !focused && route.name === bottomTabScreenNames.HOME
+            ? renderBottomTabIcon(
+                require("@src/assets/png/bottom-tab/home-nfocused.png")
+              )
+            : focused && route.name === bottomTabScreenNames.PAYMENTS
+            ? renderBottomTabIcon(
+                require("@src/assets/png/bottom-tab/payments-focused.png")
+              )
+            : !focused && route.name === bottomTabScreenNames.PAYMENTS
+            ? renderBottomTabIcon(
+                require("@src/assets/png/bottom-tab/payments-nfocused.png")
+              )
+            : focused && route.name === bottomTabScreenNames.MORE
+            ? renderBottomTabIcon(
+                require("@src/assets/png/bottom-tab/more-focused.png")
+              )
+            : !focused && route.name === bottomTabScreenNames.MORE
+            ? renderBottomTabIcon(
+                require("@src/assets/png/bottom-tab/more-nfocused.png")
+              )
+            : focused && route.name === bottomTabScreenNames.PROFILE
+            ? renderBottomTabIcon(
+                require("@src/assets/png/bottom-tab/profile-focused.png")
+              )
+            : !focused && route.name === bottomTabScreenNames.PROFILE
+            ? renderBottomTabIcon(
+                require("@src/assets/png/bottom-tab/profile-nfocused.png")
+              )
+            : undefined,
       })}>
       {bottomTabScreens &&
         bottomTabScreens.map((screen, index) => (
@@ -66,3 +82,15 @@ export const BottomTabStack = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  iconContainer: {
+    width: DVW(7),
+    height: DVH(3.5),
+    overflow: "hidden",
+  },
+  icon: {
+    width: "100%",
+    height: "100%",
+  },
+});

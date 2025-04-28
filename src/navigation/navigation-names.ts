@@ -13,6 +13,6 @@ export enum bottomTabScreenNames {
 }
 
 export enum appScreenNames {
-  NOTIFICATION = "Notification",
+  NOTIFICATIONS = "Notifications",
   BOTTOM_TAB = "BottomTab",
 }

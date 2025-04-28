@@ -26,3 +26,26 @@ export type onboardingTypes = {
   description: string;
   image: ImageSourcePropType;
 }[];
+
+export type quickActionsTypes = {
+  image: ImageSourcePropType;
+};
+
+export type suggestedActionsTypes = {
+  image: ImageSourcePropType;
+  title: string;
+};
+
+export type moreTypes = {
+  title: string;
+  desc: string;
+  icon: ImageSourcePropType;
+  service: {
+    title: string;
+    items: {
+      title: string;
+      desc: string;
+      icon: ImageSourcePropType;
+    }[];
+  }[];
+}[];

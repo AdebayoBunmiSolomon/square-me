@@ -1,18 +1,20 @@
 import { StatusBar } from "@src/common";
 import { CustomText } from "@src/components/shared";
-import { bottomTabScreenNames } from "@src/navigation";
+import { appScreenNames, bottomTabScreenNames } from "@src/navigation";
 import { colors } from "@src/resources/color/color";
 import { DVH, DVW, moderateScale } from "@src/resources/responsiveness";
-import { BottomTabBarScreenProps } from "@src/router/types";
+import { BottomTabBarScreenProps, RootStackParamList } from "@src/router/types";
 import { Screen } from "@src/screens/Screen";
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 import { more } from "@src/constants/more";
 import { MoreModal } from "@src/components/app/more";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
 
 export const More =
   ({}: BottomTabBarScreenProps<bottomTabScreenNames.MORE>) => {
+    const navigation: NavigationProp<RootStackParamList> = useNavigation();
     const [showModal, setShowModal] = useState<boolean>(false);
     return (
       <>
@@ -27,7 +29,13 @@ export const More =
                 <TouchableOpacity
                   key={index}
                   style={styles.moreIconBtn}
-                  onPress={() => setShowModal(!showModal)}>
+                  onPress={() => {
+                    if (index === 4) {
+                      setShowModal(!showModal);
+                    } else {
+                      navigation.navigate(appScreenNames.BILL_PAYMENT);
+                    }
+                  }}>
                   <View style={styles.moreIconContainer}>
                     <Image
                       source={item.icon}

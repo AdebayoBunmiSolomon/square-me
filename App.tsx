@@ -7,6 +7,7 @@ import {
   configureReanimatedLogger,
   ReanimatedLogLevel,
 } from "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // This is the default configuration
 configureReanimatedLogger({
@@ -25,12 +26,17 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaProvider>
-      {!isFontLoadingComplete ? (
-        <AppLoader />
-      ) : (
-        <Router isAuthenticated={true} />
-      )}
-    </SafeAreaProvider>
+    <GestureHandlerRootView
+      style={{
+        flex: 1,
+      }}>
+      <SafeAreaProvider>
+        {!isFontLoadingComplete ? (
+          <AppLoader />
+        ) : (
+          <Router isAuthenticated={true} />
+        )}
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }

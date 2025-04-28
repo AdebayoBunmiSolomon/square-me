@@ -19,6 +19,8 @@ export interface BottomTabBarStackParamList extends ParamListBase {
   Payments: undefined;
   More: undefined;
   Profile: undefined;
+  SendMoney: undefined;
+  RequestMoney: undefined;
 }
 
 export type BottomTabBarScreenProps<
@@ -28,6 +30,9 @@ export type BottomTabBarScreenProps<
 //native and app screen navigation
 export interface RootStackParamList extends ParamListBase {
   Notifications: undefined;
+  BillPayment: undefined;
+  SendMoney: undefined;
+  RequestMoney: undefined;
 }
 
 export type RootStackScreenProps<ScreenName extends keyof RootStackParamList> =

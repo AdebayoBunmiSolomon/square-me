@@ -15,4 +15,7 @@ export enum bottomTabScreenNames {
 export enum appScreenNames {
   NOTIFICATIONS = "Notifications",
   BOTTOM_TAB = "BottomTab",
+  BILL_PAYMENT = "BillPayment",
+  SEND_MONEY = "SendMoney",
+  REQUEST_MONEY = "RequestMoney",
 }

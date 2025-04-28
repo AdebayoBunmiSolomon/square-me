@@ -49,3 +49,12 @@ export type moreTypes = {
     }[];
   }[];
 }[];
+
+export type billPaymentTypes = {
+  title: string;
+  desc: string;
+  screen: string;
+  icon: ImageSourcePropType;
+}[];
+
+export type sendMoneyOptionTypes = ImageSourcePropType;

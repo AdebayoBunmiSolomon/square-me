@@ -27,7 +27,8 @@
     "undefined": "react-navigation/native",
     "yup": "^1.6.1",
     "zustand": "^5.0.3",
-    "react-native-gesture-handler": "~2.20.2"
+    "react-native-gesture-handler": "~2.20.2",
+    "expo-local-authentication": "~15.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

@@ -14,11 +14,14 @@ import {
 import { KeyboardDismissal } from "../Keyboard-Dismissal";
 import { Fingerprint } from "lucide-react-native";
 import { useAuthStore } from "@src/hooks/zustand";
+import { useLocalAuthentication } from "@src/hooks/services";
 
 export const Login = ({
   navigation,
 }: AuthScreenProps<authScreenNames.LOGIN>) => {
   const { setIsAuthenticated } = useAuthStore();
+  const { handleBiometricAuth, isBiometricAuthenticated } =
+    useLocalAuthentication();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [otp, setOtp] = useState<string>("");
   const [actionText, setActionText] = useState<"Log Out?" | "Forgot PIN?">(
@@ -28,8 +31,10 @@ export const Login = ({
   const login = async () => {
     setIsLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      setIsAuthenticated(true);
+      if (otp.length >= 6) {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        setIsAuthenticated(true);
+      }
     } catch (err: any) {
       console.log("Error", err);
     } finally {
@@ -44,6 +49,12 @@ export const Login = ({
       setActionText("Log Out?");
     }
   }, [otp]);
+
+  useEffect(() => {
+    if (isBiometricAuthenticated) {
+      setIsAuthenticated(true);
+    }
+  }, [isBiometricAuthenticated]);
 
   const onPressAction = () => {
     if (actionText === "Log Out?") {
@@ -71,7 +82,9 @@ export const Login = ({
         />
       </KeyboardDismissal>
       <View style={styles.bottomActionContainer}>
-        <TouchableOpacity style={styles.biometricBtn}>
+        <TouchableOpacity
+          style={styles.biometricBtn}
+          onPress={async () => handleBiometricAuth()}>
           <Fingerprint
             color={colors.blue}
             size={moderateScale(45)}

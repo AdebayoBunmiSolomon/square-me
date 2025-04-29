@@ -2,8 +2,14 @@ import { appScreenTypes } from "@src/types/types";
 import { appScreenNames } from "./navigation-names";
 import { BottomTabStack } from "@src/router/bottom-tab-stack";
 import {
+  Badges,
   BillPayment,
   Notifications,
+  RequestUsingBeneficiary,
+  RequestUsingContactList,
+  RequestUsingSquareTag,
+  Rewards,
+  SendToBeneficiary,
   SendToContactList,
   SendUsingSquareTag,
 } from "@src/screens/app";
@@ -38,5 +44,29 @@ export const appScreens: appScreenTypes[] = [
   {
     screenName: appScreenNames.SEND_TO_CONTACT_LIST,
     component: SendToContactList,
+  },
+  {
+    screenName: appScreenNames.BADGES,
+    component: Badges,
+  },
+  {
+    screenName: appScreenNames.REWARDS,
+    component: Rewards,
+  },
+  {
+    screenName: appScreenNames.SEND_TO_BENEFICIARY,
+    component: SendToBeneficiary,
+  },
+  {
+    screenName: appScreenNames.REQUEST_USING_SQUARE_TAG,
+    component: RequestUsingSquareTag,
+  },
+  {
+    screenName: appScreenNames.REQUEST_USING_BENEFICIARY,
+    component: RequestUsingBeneficiary,
+  },
+  {
+    screenName: appScreenNames.REQUEST_USING_CONTACT_LIST,
+    component: RequestUsingContactList,
   },
 ];

@@ -119,3 +119,11 @@ export const formatUsername = (username: string) => {
 
   return formattedName.toUpperCase();
 };
+
+export const getInitials = (name: string): string => {
+  if (!name) return "";
+
+  const parts = name.trim().split(" ");
+  const initials = parts.map((part) => part.charAt(0).toUpperCase()).join("");
+  return initials;
+};

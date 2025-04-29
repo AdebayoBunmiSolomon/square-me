@@ -35,6 +35,10 @@ export interface RootStackParamList extends ParamListBase {
   RequestMoney: undefined;
   SendUsingSquareTag: undefined;
   SendToContactList: undefined;
+  Badges: undefined;
+  Rewards: undefined;
+  RequestUsingSquareTag: undefined;
+  RequestUsingContactList: undefined;
 }
 
 export type RootStackScreenProps<ScreenName extends keyof RootStackParamList> =

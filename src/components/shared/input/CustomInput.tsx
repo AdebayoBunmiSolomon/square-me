@@ -55,6 +55,7 @@ interface CustomProps extends BaseProps {
   disabled?: boolean;
   multiLine?: boolean;
   searchInput?: boolean;
+  height?: number;
 }
 
 type CustomInputProps = DropdownProps | PasswordProps | CustomProps;
@@ -225,7 +226,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
   );
 
   const renderCustomInput = () => {
-    const { keyboardType, disabled, multiLine, searchInput } =
+    const { keyboardType, disabled, multiLine, searchInput, height } =
       props as CustomProps;
 
     return (
@@ -235,7 +236,7 @@ export const CustomInput: React.FC<CustomInputProps> = (props) => {
             styles.inputWrapper,
             {
               borderColor,
-              height: multiLine ? DVH(20) : DVH(7),
+              height: multiLine ? DVH(height ? height : 20) : DVH(7),
               flexDirection: searchInput ? "row" : undefined,
               alignItems: searchInput ? "center" : undefined,
               gap: searchInput ? moderateScale(5) : undefined,

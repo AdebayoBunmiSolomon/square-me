@@ -85,3 +85,43 @@ export type sendToContactListFrm1Types = {
 export type sendToContactListFrm3Types = {
   pin: string;
 };
+
+export type sendToToBeneficiaryFrm2Types = {
+  phone_number: string;
+  purpose: string;
+  amount: string;
+};
+
+export type sendToToBeneficiaryFrm4Types = {
+  pin: string;
+};
+
+export type requestUsingSquareTagFrm1Types = {
+  amount: string;
+  recipient_square_me_tag: string;
+  note: string;
+};
+
+export type requestUsingSquareTagFrm3Types = {
+  pin: string;
+};
+
+export type requestUsingBeneficiaryFrm2Types = {
+  amount: string;
+  phone_number: string;
+  note: string;
+};
+
+export type requestUsingBeneficiaryFrm4Types = {
+  pin: string;
+};
+
+export type requestUsingContactListFrm1Types = {
+  amount: string;
+  phone_number: string;
+  note: string;
+};
+
+export type requestUsingContactListFrm3Types = {
+  pin: string;
+};

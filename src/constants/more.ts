@@ -1,5 +1,23 @@
 import { moreTypes } from "@src/types/types";
 
+export const request = [
+  {
+    title: "Request using Squareme Tag",
+    desc: "Request money using their tag",
+    icon: require("@src/assets/png/request/at.png"),
+  },
+  {
+    title: "Request money from a beneficiary",
+    desc: "Request money using their tag",
+    icon: require("@src/assets/png/request/beneficiary.png"),
+  },
+  {
+    title: "Request from contact list",
+    desc: "Request money from any of your contacts that is not sqaureme",
+    icon: require("@src/assets/png/request/contact-list.png"),
+  },
+];
+
 export const more: moreTypes = [
   {
     title: "Bill Payments",

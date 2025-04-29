@@ -58,3 +58,11 @@ export type billPaymentTypes = {
 }[];
 
 export type sendMoneyOptionTypes = ImageSourcePropType;
+
+export type profileSettingsType = {
+  title: string;
+  icon: ImageSourcePropType;
+  navigation: string;
+}[];
+
+export type badgesTypes = ImageSourcePropType;

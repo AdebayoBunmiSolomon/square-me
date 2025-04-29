@@ -74,3 +74,45 @@ export const sendToContactListFrm1Validation = yup.object().shape({
 export const sendToContactListFrm3Validation = yup.object().shape({
   pin: yup.string().required("PIN is required"),
 });
+
+export const sendToToBeneficiaryFrm2Validation = yup.object().shape({
+  phone_number: yup.string().required("phone number is required"),
+  purpose: yup.string().required("purpose is required"),
+  amount: yup.string().required("amount is required"),
+});
+
+export const sendToToBeneficiaryFrm4Validation = yup.object().shape({
+  pin: yup.string().required("PIN is required"),
+});
+
+export const requestUsingSquareTagFrm1Validation = yup.object().shape({
+  amount: yup.string().required("amount is required"),
+  recipient_square_me_tag: yup
+    .string()
+    .required("recipient square me tag is required"),
+  note: yup.string().required("note is required"),
+});
+
+export const requestUsingSquareTagFrm3Validation = yup.object().shape({
+  pin: yup.string().required("PIN is required"),
+});
+
+export const requestUsingBeneficiaryFrm2Validation = yup.object().shape({
+  amount: yup.string().required("amount is required"),
+  phone_number: yup.string().required("phone number is required"),
+  note: yup.string().required("note is required"),
+});
+
+export const requestUsingBeneficiaryFrm4Validation = yup.object().shape({
+  pin: yup.string().required("PIN is required"),
+});
+
+export const requestUsingContactListFrm1Validation = yup.object().shape({
+  amount: yup.string().required("amount is required"),
+  phone_number: yup.string().required("phone number is required"),
+  note: yup.string().required("note is required"),
+});
+
+export const requestUsingContactListFrm3Validation = yup.object().shape({
+  pin: yup.string().required("PIN is required"),
+});

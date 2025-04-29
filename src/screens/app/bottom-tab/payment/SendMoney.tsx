@@ -74,6 +74,7 @@ export const SendMoney = ({
                 onPress={() => {
                   if (index === 0) {
                   } else if (index === 1) {
+                    navigation.navigate(appScreenNames.SEND_TO_BENEFICIARY);
                   } else if (index === 2) {
                     navigation.navigate(appScreenNames.SEND_USING_SQUARE_TAG);
                   } else if (index === 3) {

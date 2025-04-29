@@ -52,7 +52,7 @@ export const More =
                     </CustomText>
                     <CustomText
                       type='regular'
-                      size={15}
+                      size={14}
                       blue
                       style={{
                         maxWidth: DVW(75),

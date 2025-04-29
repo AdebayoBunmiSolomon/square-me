@@ -13,14 +13,29 @@ import {
 } from "@src/components/shared";
 import { KeyboardDismissal } from "../Keyboard-Dismissal";
 import { Fingerprint } from "lucide-react-native";
+import { useAuthStore } from "@src/hooks/zustand";
 
 export const Login = ({
   navigation,
 }: AuthScreenProps<authScreenNames.LOGIN>) => {
+  const { setIsAuthenticated } = useAuthStore();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [otp, setOtp] = useState<string>("");
   const [actionText, setActionText] = useState<"Log Out?" | "Forgot PIN?">(
     "Log Out?"
   );
+
+  const login = async () => {
+    setIsLoading(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      setIsAuthenticated(true);
+    } catch (err: any) {
+      console.log("Error", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (otp) {
@@ -71,11 +86,12 @@ export const Login = ({
           textType='light'
           textWhite
           blue
-          onPress={() => {}}
+          onPress={async () => await login()}
           buttonType='Solid'
           btnStyle={{
             width: "100%",
           }}
+          isLoading={isLoading}
         />
         <ActionText leftText={"Not John?"} actionText={"Log Out"} />
         <CustomText type='regular' size={15} blue>

@@ -1,6 +1,7 @@
 import { StatusBar } from "@src/common";
 import { CustomText } from "@src/components/shared";
 import { profileSettings } from "@src/constants/profile-settings";
+import { useAuthStore } from "@src/hooks/zustand";
 import { bottomTabScreenNames } from "@src/navigation";
 import { colors } from "@src/resources/color/color";
 import { DVH, DVW, moderateScale } from "@src/resources/responsiveness";
@@ -14,6 +15,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 export const Profile = ({
   navigation,
 }: BottomTabBarScreenProps<bottomTabScreenNames.PROFILE>) => {
+  const { setIsAuthenticated } = useAuthStore();
   return (
     <Screen style={styles.screen} safeArea>
       <StatusBar style='dark' bgColor={colors.white} />
@@ -51,7 +53,9 @@ export const Profile = ({
           ))}
       </View>
       <View style={styles.bottomActionContainer}>
-        <TouchableOpacity style={styles.logOutBtn}>
+        <TouchableOpacity
+          style={styles.logOutBtn}
+          onPress={() => setIsAuthenticated(false)}>
           <LogOut color={"#F04438"} size={moderateScale(20)} />
           <CustomText
             type='medium'

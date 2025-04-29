@@ -169,7 +169,7 @@ export const SignUp = ({
       isValid = await verifyEmailAddressFormTrigger();
       if (isValid) nextStep();
     } else if (currStep === 11) {
-      //perform specific operations here
+      navigation.navigate(authScreenNames.LOGIN);
     }
   };
 
@@ -291,7 +291,9 @@ export const SignUp = ({
                 <ActionText
                   leftText='Already have an account?'
                   actionText='Login here'
-                  onPressAction={() => {}}
+                  onPressAction={() =>
+                    navigation.navigate(authScreenNames.LOGIN)
+                  }
                 />
                 <CustomText type='regular' size={15} blue>
                   v2.5.501

@@ -8,6 +8,7 @@ import {
   ReanimatedLogLevel,
 } from "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useAuthStore } from "@src/hooks/zustand";
 
 // This is the default configuration
 configureReanimatedLogger({
@@ -16,6 +17,7 @@ configureReanimatedLogger({
 });
 
 export default function App() {
+  const { isAuthenticated } = useAuthStore();
   const { isFontLoadingComplete, loadResourcesAndDataAsync } = useFontLoading();
   //load font family resources
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function App() {
         {!isFontLoadingComplete ? (
           <AppLoader />
         ) : (
-          <Router isAuthenticated={true} />
+          <Router isAuthenticated={isAuthenticated} />
         )}
       </SafeAreaProvider>
     </GestureHandlerRootView>

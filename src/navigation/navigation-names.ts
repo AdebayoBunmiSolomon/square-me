@@ -18,4 +18,6 @@ export enum appScreenNames {
   BILL_PAYMENT = "BillPayment",
   SEND_MONEY = "SendMoney",
   REQUEST_MONEY = "RequestMoney",
+  SEND_USING_SQUARE_TAG = "SendUsingSquareTag",
+  SEND_TO_CONTACT_LIST = "SendToContactList",
 }

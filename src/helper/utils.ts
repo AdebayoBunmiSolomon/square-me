@@ -107,3 +107,15 @@ export const formatAmountWithCommas = (amount: number) => {
   let formattedAmt = amtStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return formattedAmt;
 };
+
+export const formatUsername = (username: string) => {
+  if (!username) return "";
+  let cleanUsername = username.replace(/^@/, "");
+  cleanUsername = cleanUsername.replace(/[0-9]/g, "");
+  const parts = cleanUsername.match(/[A-Za-z][a-z]*/g) || [];
+  const formattedName = parts
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  return formattedName.toUpperCase();
+};

@@ -33,6 +33,8 @@ export interface RootStackParamList extends ParamListBase {
   BillPayment: undefined;
   SendMoney: undefined;
   RequestMoney: undefined;
+  SendUsingSquareTag: undefined;
+  SendToContactList: undefined;
 }
 
 export type RootStackScreenProps<ScreenName extends keyof RootStackParamList> =

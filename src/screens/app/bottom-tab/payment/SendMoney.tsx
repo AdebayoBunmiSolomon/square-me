@@ -14,74 +14,80 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 
-export const SendMoney =
-  ({}: RootStackScreenProps<appScreenNames.SEND_MONEY>) => {
-    const [enteredAmt, setEnteredAmt] = useState<any>("");
-    const { modalRef, showModal, hideModal } = useBottomSheet();
-    return (
-      <>
-        <Screen safeArea style={styles.screen}>
-          <StatusBar style='light' bgColor={"#0C0C26"} />
-          <View style={styles.acctBalCard}>
-            <CustomText type='regular' size={15} white>
-              Wallet Balance
-            </CustomText>
-            <CustomText type='medium' size={20} white>
-              ₦5,200
-            </CustomText>
-          </View>
-          <TouchableOpacity
-            style={styles.actionBtn}
-            onPress={() => showModal()}>
-            <CustomText type='regular' size={13} white>
-              Where do you want to send money?
-            </CustomText>
-            <ChevronDown size={moderateScale(20)} color={colors.white} />
-          </TouchableOpacity>
-          <KeyPad onEnterAmt={(amt) => setEnteredAmt(amt)} />
-          <View style={styles.bottomButtonContainer}>
-            <CustomButton
-              title='Proceed'
-              buttonType='Solid'
-              textType='regular'
-              textWhite
-              textSize={15}
-              onPress={() => {
-                if (enteredAmt && Number(enteredAmt) > 0) {
-                  console.log("Proceeding with amount: ", enteredAmt);
-                }
-              }}
-              btnStyle={{
-                backgroundColor: "#4C525E",
-                width: "100%",
-              }}
-            />
-          </View>
-        </Screen>
-        <BottomSheet
-          title='Where do you want to send money?'
-          modalRef={modalRef}
-          onHideModal={() => hideModal()}
-          maxHeight={40}>
-          <View
-            style={{
-              paddingTop: moderateScale(20),
-            }}>
-            {sendMoneyOptions &&
-              sendMoneyOptions.map((item, index) => (
-                <TouchableOpacity style={styles.imgContainer} key={index}>
-                  <Image
-                    source={item}
-                    contentFit='contain'
-                    style={styles.img}
-                  />
-                </TouchableOpacity>
-              ))}
-          </View>
-        </BottomSheet>
-      </>
-    );
-  };
+export const SendMoney = ({
+  navigation,
+}: RootStackScreenProps<appScreenNames.SEND_MONEY>) => {
+  const [enteredAmt, setEnteredAmt] = useState<any>("");
+  const { modalRef, showModal, hideModal } = useBottomSheet();
+  return (
+    <>
+      <Screen safeArea style={styles.screen}>
+        <StatusBar style='light' bgColor={"#0C0C26"} />
+        <View style={styles.acctBalCard}>
+          <CustomText type='regular' size={15} white>
+            Wallet Balance
+          </CustomText>
+          <CustomText type='medium' size={20} white>
+            ₦5,200
+          </CustomText>
+        </View>
+        <TouchableOpacity style={styles.actionBtn} onPress={() => showModal()}>
+          <CustomText type='regular' size={13} white>
+            Where do you want to send money?
+          </CustomText>
+          <ChevronDown size={moderateScale(20)} color={colors.white} />
+        </TouchableOpacity>
+        <KeyPad onEnterAmt={(amt) => setEnteredAmt(amt)} />
+        <View style={styles.bottomButtonContainer}>
+          <CustomButton
+            title='Proceed'
+            buttonType='Solid'
+            textType='regular'
+            textWhite
+            textSize={15}
+            onPress={() => {
+              if (enteredAmt && Number(enteredAmt) > 0) {
+                console.log("Proceeding with amount: ", enteredAmt);
+              }
+            }}
+            btnStyle={{
+              backgroundColor: "#4C525E",
+              width: "100%",
+            }}
+          />
+        </View>
+      </Screen>
+      <BottomSheet
+        title='Where do you want to send money?'
+        modalRef={modalRef}
+        onHideModal={() => hideModal()}
+        maxHeight={40}>
+        <View
+          style={{
+            paddingTop: moderateScale(20),
+          }}>
+          {sendMoneyOptions &&
+            sendMoneyOptions.map((item, index) => (
+              <TouchableOpacity
+                style={styles.imgContainer}
+                key={index}
+                onPress={() => {
+                  if (index === 0) {
+                  } else if (index === 1) {
+                  } else if (index === 2) {
+                    navigation.navigate(appScreenNames.SEND_USING_SQUARE_TAG);
+                  } else if (index === 3) {
+                    navigation.navigate(appScreenNames.SEND_TO_CONTACT_LIST);
+                  }
+                }}>
+                <Image source={item} contentFit='contain' style={styles.img} />
+              </TouchableOpacity>
+            ))}
+        </View>
+      </BottomSheet>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   screen: {

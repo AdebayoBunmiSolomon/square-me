@@ -1,7 +1,12 @@
 import { appScreenTypes } from "@src/types/types";
 import { appScreenNames } from "./navigation-names";
 import { BottomTabStack } from "@src/router/bottom-tab-stack";
-import { BillPayment, Notifications } from "@src/screens/app";
+import {
+  BillPayment,
+  Notifications,
+  SendToContactList,
+  SendUsingSquareTag,
+} from "@src/screens/app";
 import { RequestMoney, SendMoney } from "@src/screens/app/bottom-tab/payment";
 
 export const appScreens: appScreenTypes[] = [
@@ -25,5 +30,13 @@ export const appScreens: appScreenTypes[] = [
   {
     screenName: appScreenNames.REQUEST_MONEY,
     component: RequestMoney,
+  },
+  {
+    screenName: appScreenNames.SEND_USING_SQUARE_TAG,
+    component: SendUsingSquareTag,
+  },
+  {
+    screenName: appScreenNames.SEND_TO_CONTACT_LIST,
+    component: SendToContactList,
   },
 ];

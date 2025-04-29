@@ -47,3 +47,30 @@ export const FpCreatePinFrmValidation = yup.object().shape({
 export const FpConfirmPinFrmValidation = yup.object().shape({
   pin: yup.string().required("PIN is required"),
 });
+
+export const sendUsingSquareMeTagFrm1Validation = yup.object().shape({
+  square_tag: yup.string().required("squareme tag is required"),
+  purpose: yup.string().required("purpose is required"),
+  amount: yup.string().required("amount is required"),
+});
+
+export const sendUsingSquareMeTagFrm2Validation = yup.object().shape({
+  beneficiary: yup.string().required("beneficiary is required"),
+  purpose: yup.string().required("purpose is required"),
+  amount: yup.string().required("amount is required"),
+});
+
+export const sendUsingSquareMeTagFrm4Validation = yup.object().shape({
+  pin: yup.string().required("PIN is required"),
+});
+
+export const sendToContactListFrm1Validation = yup.object().shape({
+  phone_number: yup.string().required("phone number is required"),
+  purpose: yup.string().required("purpose is required"),
+  amount: yup.string().required("amount is required"),
+  // save_beneficiary: yup.string().required("amount is required"),
+});
+
+export const sendToContactListFrm3Validation = yup.object().shape({
+  pin: yup.string().required("PIN is required"),
+});

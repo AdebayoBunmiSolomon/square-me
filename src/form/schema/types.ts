@@ -53,3 +53,35 @@ export type FpCreatePinFrmTypes = {
 export type FpConfirmPinFrmTypes = {
   pin: string;
 };
+
+//send using square me tag step 1
+export type sendUsingSquareTagFrm1Types = {
+  square_tag: string;
+  purpose: string;
+  amount: string;
+};
+
+//send using square me tag step 2
+export type sendUsingSquareTagFrm2Types = {
+  beneficiary: string;
+  purpose: string;
+  amount: string;
+};
+
+//send using square me tag step 4
+export type sendUsingSquareTagFrm4Types = {
+  pin: string;
+};
+
+//send to contact list step 1
+export type sendToContactListFrm1Types = {
+  phone_number: string;
+  purpose: string;
+  amount: string;
+  // save_beneficiary: string;
+};
+
+//send to contact list step 3
+export type sendToContactListFrm3Types = {
+  pin: string;
+};
